@@ -3,6 +3,8 @@ import HelmetExport from 'react-helmet';
 import HeroSlider from '../components/HeroSlider';
 import CategorySection from '../components/CategorySection';
 import RecentListingsSection from '../components/RecentListingsSection';
+import WhyAdoptSection from '../components/WhyAdoptSection';
+import PetHeroesSection from '../components/PetHeroesSection';
 
 
 const Home = () => {
@@ -14,6 +16,8 @@ const Home = () => {
         <HeroSlider></HeroSlider>
         <CategorySection></CategorySection>
         <RecentListingsSection></RecentListingsSection>
+        <WhyAdoptSection></WhyAdoptSection>
+        <PetHeroesSection ></PetHeroesSection>
       </>
     );
 };
