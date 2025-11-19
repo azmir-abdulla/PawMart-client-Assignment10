@@ -11,7 +11,8 @@ const HomeLayout = () => {
         </header>
 
         <main>
-          <Outlet></Outlet>
+          <Outlet>
+          </Outlet>
         </main>
 
         <footer>
