@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { NavLink, Link } from "react-router";
 import { FaMoon, FaSun } from "react-icons/fa";
+// import "./Navbar.css"; // Make sure to import the CSS file
+import Logo from "../assets/logo.png";
 
 const Navbar = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
-  // Toggle dark/light theme
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
@@ -19,30 +20,38 @@ const Navbar = () => {
   const navLinks = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <NavLink to="/" className="nav-link">
+          Home
+        </NavLink>
       </li>
       <li>
-        <Link to="/pets">Pets & Supplies</Link>
+        <NavLink to="/pet-and-supplies" className="nav-link">
+          Pets & Supplies
+        </NavLink>
       </li>
       <li>
-        <Link to="/add-listing">Add Listing</Link>
+        <NavLink to="/add-listing" className="nav-link">
+          Add Listing
+        </NavLink>
       </li>
       <li>
-        <Link to="/my-listings">My Listings</Link>
+        <NavLink to="/my-listings" className="nav-link">
+          My Listings
+        </NavLink>
       </li>
       <li>
-        <Link to="/my-orders">My Orders</Link>
+        <NavLink to="/my-orders" className="nav-link">
+          My Orders
+        </NavLink>
       </li>
     </>
   );
 
   return (
     <div className="navbar bg-base-100 shadow-md sticky top-0 z-50 px-4 md:px-10">
-      {/* Left: Logo + Name */}
       <div className="navbar-start">
         <div className="dropdown">
           <button tabIndex={0} className="btn btn-ghost lg:hidden">
-            {/* mobile menu icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -66,24 +75,20 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to="/" className="flex items-center gap-2 text-xl font-bold">
-          <img src="/logo.png" alt="logo" className="w-8 h-8" />
-          PawMart
+          <img src={Logo} alt="logo" className="w-[140px]" />
+          
         </Link>
       </div>
 
-      {/* Middle: Menu (desktop) */}
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 font-medium">{navLinks}</ul>
       </div>
 
-      {/* Right: Profile + Theme + Login */}
       <div className="navbar-end flex items-center gap-3">
-        {/* Dark/Light toggle */}
         <button onClick={toggleTheme} className="btn btn-ghost btn-circle">
           {theme === "light" ? <FaMoon /> : <FaSun />}
         </button>
 
-        {/* Avatar */}
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
@@ -106,7 +111,6 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* Login Button */}
         <Link to="/login" className="btn btn-primary hidden sm:inline-flex">
           Login
         </Link>
