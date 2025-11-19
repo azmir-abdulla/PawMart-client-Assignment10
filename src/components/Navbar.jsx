@@ -76,7 +76,6 @@ const Navbar = () => {
         </div>
         <Link to="/" className="flex items-center gap-2 text-xl font-bold">
           <img src={Logo} alt="logo" className="w-[140px]" />
-          
         </Link>
       </div>
 
@@ -100,7 +99,7 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
           >
             <li>
-              <Link to="/profile">Profile</Link>
+              <Link to="/auth/userprofile">Profile</Link>
             </li>
             <li>
               <Link to="/settings">Settings</Link>
@@ -111,7 +110,10 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <Link to="/auth/login" className="btn btn-primary hidden sm:inline-flex">
+        <Link
+          to="/auth/login"
+          className="btn btn-primary hidden sm:inline-flex"
+        >
           Login
         </Link>
       </div>
