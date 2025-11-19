@@ -111,7 +111,7 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <Link to="/login" className="btn btn-primary hidden sm:inline-flex">
+        <Link to="/auth/login" className="btn btn-primary hidden sm:inline-flex">
           Login
         </Link>
       </div>
