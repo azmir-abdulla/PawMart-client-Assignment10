@@ -14,7 +14,7 @@ const HeroSlider = () => {
         "Browse hundreds of lovable pets waiting for their forever homes.",
       buttonText: "Meet Our Pets",
       // Image: Happy dog, cat, or a mix of pets
-      imageUrl: "https://i.ibb.co/30H9q14/happy-pets-banner.jpg", // Placeholder for Pets Image
+      imageUrl: "https://i.ibb.co/7xRDG47t/download-6.jpg", // Placeholder for Pets Image
     },
     {
       // Tagline 2
@@ -22,7 +22,7 @@ const HeroSlider = () => {
       subtitle: "Give a loving pet a second chance and a place to call home.",
       buttonText: "Learn About Adoption",
       // Image: Owner hugging a pet, showing the connection
-      imageUrl: "https://i.ibb.co/6y45p4T/owner-hugging-dog-banner.jpg", // Placeholder for Adoption Image
+      imageUrl: "https://i.ibb.co/60QHQjnx/download-5.jpg", // Placeholder for Adoption Image
     },
     {
       // Tagline 3
@@ -30,7 +30,8 @@ const HeroSlider = () => {
       subtitle: "Open your heart and home to a companion who will cherish you.",
       buttonText: "Volunteer Today",
       // Image: Close-up of a kitten or puppy looking adorable
-      imageUrl: "https://i.ibb.co/Y8K1v7y/puppy-kitten-banner.jpg", // Placeholder for Love & Care Image
+      imageUrl:
+        "https://i.ibb.co/21XZyPFw/7-Key-Signs-You-re-Wealthier-Than-You-Think.jpg", // Placeholder for Love & Care Image
     },
   ];
 

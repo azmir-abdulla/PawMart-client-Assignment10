@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import HelmetExport from 'react-helmet';
+import Footer from '../components/Footer';
 
 const PetAndSupplies = () => {
       return (
@@ -12,6 +13,13 @@ const PetAndSupplies = () => {
           <header>
             <Navbar></Navbar>
           </header>
+          <main>
+            
+          </main>
+          <footer>
+            <Footer>  
+            </Footer>
+          </footer>
         </>
       );
 };

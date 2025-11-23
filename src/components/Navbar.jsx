@@ -1,123 +1,170 @@
-import { useEffect, useState } from "react";
-import { NavLink, Link } from "react-router";
-import { FaMoon, FaSun } from "react-icons/fa";
-// import "./Navbar.css"; // Make sure to import the CSS file
+import React, { use, useState, useEffect } from "react";
+import { IoMdLogIn } from "react-icons/io";
 import Logo from "../assets/logo.png";
+import { Link, NavLink } from "react-router";
+import { AuthContext } from "../providers/AuthProvider";
+import { Bounce, toast, ToastContainer } from "react-toastify";
+import { FaSun, FaMoon } from "react-icons/fa";
 
 const Navbar = () => {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const { user, logOut } = use(AuthContext);
+  const [theme, setTheme] = useState("light");
 
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-  };
-
+  // Theme Toggle
   useEffect(() => {
     document.querySelector("html").setAttribute("data-theme", theme);
   }, [theme]);
 
-  const navLinks = (
-    <>
-      <li>
-        <NavLink to="/" className="nav-link">
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/pet-and-supplies" className="nav-link">
-          Pets & Supplies
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/add-listing" className="nav-link">
-          Add Listing
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/my-listings" className="nav-link">
-          My Listings
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/my-orders" className="nav-link">
-          My Orders
-        </NavLink>
-      </li>
-    </>
-  );
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => toast.success("Successfully logged out!"))
+      .catch((error) => console.log(error));
+  };
 
   return (
-    <div className="navbar bg-base-100 shadow-md sticky top-0 z-50 px-4 md:px-10">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <button tabIndex={0} className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
+    <>
+      <ToastContainer />
+
+      <nav className="navbar bg-base-100 shadow-md sticky top-0 z-50 px-4 md:px-10">
+        {/* LEFT: Logo */}
+        <div className="navbar-start">
+          <NavLink to="/" className="flex items-center gap-2 cursor-pointer">
+            <img src={Logo} alt="Logo" className="w-16" />
+            <span className="text-2xl font-extrabold text-[#222] tracking-tight">
+              KIS
+            </span>
+          </NavLink>
+        </div>
+
+        {/* MIDDLE MENU */}
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1 text-gray-600 font-medium">
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-[#6BCB77] font-semibold"
+                    : "hover:text-[#FF8C42]"
+                }
+              >
+                Home
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to="/toys"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-[#6BCB77] font-semibold"
+                    : "hover:text-[#FF8C42]"
+                }
+              >
+                Pets & Supplies
+              </NavLink>
+            </li>
+
+            {/* SHOW ONLY AFTER LOGIN */}
+            {user && (
+              <>
+                <li>
+                  <NavLink
+                    to="/addlisting"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-[#6BCB77] font-semibold"
+                        : "hover:text-[#FF8C42]"
+                    }
+                  >
+                    Add Listing
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to="/mylistings"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-[#6BCB77] font-semibold"
+                        : "hover:text-[#FF8C42]"
+                    }
+                  >
+                    My Listings
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to="/orders"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-[#6BCB77] font-semibold"
+                        : "hover:text-[#FF8C42]"
+                    }
+                  >
+                    My Orders
+                  </NavLink>
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
+
+        {/* RIGHT SIDE */}
+        <div className="navbar-end flex items-center gap-4">
+          {/* Theme Toggle */}
+          <button onClick={toggleTheme} className="text-xl">
+            {theme === "light" ? <FaMoon /> : <FaSun />}
           </button>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-          >
-            {navLinks}
-          </ul>
+
+          {/* IF LOGGED IN ⇒ SHOW AVATAR + LOGOUT */}
+          {user ? (
+            <>
+              <div className="relative group">
+                <Link to="/auth/UserProfile">
+                  <img
+                    src={user.photoURL || "https://i.ibb.co/5nDfxpQ/user.png"}
+                    alt="User"
+                    className="w-10 h-10 rounded-full border-2 border-[#6BCB77] cursor-pointer"
+                  />
+                </Link>
+                <span className="absolute left-1/2 -translate-x-1/2 mt-2 bg-gray-800 text-white text-sm px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                  {user.displayName || "User"}
+                </span>
+              </div>
+
+              <button
+                onClick={handleLogout}
+                className="btn bg-[#6BCB77] hover:bg-[#FF8C42] text-white btn-sm"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/auth/login"
+                className="btn bg-[#6BCB77] hover:bg-[#FF8C42] text-white btn-sm flex items-center gap-1"
+              >
+                <IoMdLogIn /> Login
+              </Link>
+
+              <Link
+                to="/auth/register"
+                className="btn bg-[#FF8C42] hover:bg-[#6BCB77] text-white btn-sm"
+              >
+                Register
+              </Link>
+            </>
+          )}
         </div>
-        <Link to="/" className="flex items-center gap-2 text-xl font-bold">
-          <img src={Logo} alt="logo" className="w-[140px]" />
-        </Link>
-      </div>
-
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 font-medium">{navLinks}</ul>
-      </div>
-
-      <div className="navbar-end flex items-center gap-3">
-        <button onClick={toggleTheme} className="btn btn-ghost btn-circle">
-          {theme === "light" ? <FaMoon /> : <FaSun />}
-        </button>
-
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src="https://i.pravatar.cc/100?img=12" alt="profile" />
-            </div>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
-          >
-            <li>
-              <Link to="/auth/userprofile">Profile</Link>
-            </li>
-            <li>
-              <Link to="/settings">Settings</Link>
-            </li>
-            <li>
-              <Link to="/logout">Logout</Link>
-            </li>
-          </ul>
-        </div>
-
-        <Link
-          to="/auth/login"
-          className="btn btn-primary hidden sm:inline-flex"
-        >
-          Login
-        </Link>
-      </div>
-    </div>
+      </nav>
+    </>
   );
 };
 
