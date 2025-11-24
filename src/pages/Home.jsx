@@ -1,6 +1,5 @@
 import React from 'react';
 import HelmetExport from 'react-helmet';
-import HeroSlider from '../components/HeroSlider';
 import CategorySection from '../components/CategorySection';
 import RecentListingsSection from '../components/RecentListingsSection';
 import WhyAdoptSection from '../components/WhyAdoptSection';
@@ -13,7 +12,7 @@ const Home = () => {
         <HelmetExport>
           <title>Home</title>
         </HelmetExport>
-        <HeroSlider></HeroSlider>
+        {/* <HeroSlider></HeroSlider> */}
         <CategorySection></CategorySection>
         <RecentListingsSection></RecentListingsSection>
         <WhyAdoptSection></WhyAdoptSection>

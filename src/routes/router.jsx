@@ -48,6 +48,7 @@ const router = createBrowserRouter([
   {
     path: "/pet-and-supplies",
     element: <PetAndSupplies></PetAndSupplies>,
+    loader: () => fetch("http://localhost:3000/recentlist"),
   },
   {
     path: "/add-listing",

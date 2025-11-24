@@ -58,7 +58,7 @@ const Navbar = () => {
 
             <li>
               <NavLink
-                to="/toys"
+                to="/pet-and-supplies"
                 className={({ isActive }) =>
                   isActive
                     ? "text-[#6BCB77] font-semibold"
@@ -74,7 +74,7 @@ const Navbar = () => {
               <>
                 <li>
                   <NavLink
-                    to="/addlisting"
+                    to="/add-listing"
                     className={({ isActive }) =>
                       isActive
                         ? "text-[#6BCB77] font-semibold"
@@ -87,7 +87,7 @@ const Navbar = () => {
 
                 <li>
                   <NavLink
-                    to="/mylistings"
+                    to="/my-listings"
                     className={({ isActive }) =>
                       isActive
                         ? "text-[#6BCB77] font-semibold"
@@ -100,7 +100,7 @@ const Navbar = () => {
 
                 <li>
                   <NavLink
-                    to="/orders"
+                    to="/my-orders"
                     className={({ isActive }) =>
                       isActive
                         ? "text-[#6BCB77] font-semibold"
