@@ -11,6 +11,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import UserProfile from "../pages/UserProfile";
 import PrivateRoute from '../providers/PrivateRoute';
+import ProductsDetails from '../pages/ProductsDetails';
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,14 @@ const router = createBrowserRouter([
   {
     path: "/my-orders",
     element: <AllOrder></AllOrder>,
+  },
+  {
+    path: "/product-details/:_id",
+    element: (
+      <PrivateRoute>
+        <ProductsDetails></ProductsDetails>
+      </PrivateRoute>
+    )
   },
 ]);
         
