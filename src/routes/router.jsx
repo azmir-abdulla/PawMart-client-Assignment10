@@ -13,6 +13,7 @@ import UserProfile from "../pages/UserProfile";
 import PrivateRoute from '../providers/PrivateRoute';
 import ProductsDetails from '../pages/ProductsDetails';
 import UpdateProducts from '../pages/UpdateProducts';
+import MyOders from '../pages/MyOders';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
+        loader: () => fetch("http://localhost:3000/recent-items"),
       },
     ],
   },
@@ -60,10 +62,7 @@ const router = createBrowserRouter([
     path: "/my-listings",
     element: <MyListings></MyListings>,
   },
-  {
-    path: "/my-orders",
-    element: <AllOrder></AllOrder>,
-  },
+ 
   {
     path: "/product-details/:id",
     element: (
@@ -83,6 +82,15 @@ const router = createBrowserRouter([
     ),
     loader: ({ params }) =>
       fetch(`http://localhost:3000/recentlist/${params.id}`),
+  },
+  {
+    path: "/my-orders",
+    element: (
+      <PrivateRoute>
+       <MyOders></MyOders>
+      </PrivateRoute>
+    ),
+
   },
 ]);
         

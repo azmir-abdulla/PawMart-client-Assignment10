@@ -10,6 +10,7 @@ import {
   FaTag,
 } from "react-icons/fa";
 import { AuthContext } from "../providers/AuthProvider";
+import { toast } from "react-toastify";
 
 const ProductsDetails = () => {
   const { user } = useContext(AuthContext);
@@ -29,6 +30,54 @@ const ProductsDetails = () => {
     email: ownerEmail,
   } = product || {};
   const isPet = category.toLowerCase().includes("pet");
+
+
+
+   const handleOrderSubmit = (e) => {
+
+    e.preventDefault();
+
+      const formData = {
+        name: e.target.name.value,
+        _id: e.target._id.value,
+        price: e.target.price.value,
+        username: user.displayName,
+        email: user?.email || "",
+        phone : e.target.phone.value,
+        address : e.target.address.value,
+        pickupDate :  e.target.pickupDate.value,
+        notes : e.target.notes.value,
+      };
+
+    fetch("http://localhost:3000/orders", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("Success:", data);
+            toast.success("Order placed successfully!");
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+
+
+
+   }
+
+
+
+
+
+
+
+
+
+
 
   return (
     <>
@@ -101,9 +150,7 @@ const ProductsDetails = () => {
 
       {/* ----------------- ORDER MODAL ----------------- */}
       {isModalOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-md"
-        >
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-md">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto animate-fadeIn">
             {/* Modal Header */}
             <div className="flex justify-between items-center p-6 border-b border-gray-100 sticky top-0 bg-white z-10">
@@ -119,7 +166,7 @@ const ProductsDetails = () => {
             </div>
 
             {/* Modal Form */}
-            <form className="p-6 space-y-4">
+            <form onSubmit={handleOrderSubmit} className="p-6 space-y-4">
               {/* Buyer Info */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -128,6 +175,7 @@ const ProductsDetails = () => {
                   </label>
                   <input
                     type="text"
+                    name="username"
                     value={user.displayName}
                     readOnly
                     className="w-full mt-1 p-2 bg-gray-100 border rounded text-gray-600 text-sm cursor-not-allowed"
@@ -139,6 +187,7 @@ const ProductsDetails = () => {
                   </label>
                   <input
                     type="email"
+                    name="email"
                     value={user.email}
                     readOnly
                     className="w-full mt-1 p-2 bg-gray-100 border rounded text-gray-600 text-sm cursor-not-allowed"
@@ -154,6 +203,7 @@ const ProductsDetails = () => {
                   </label>
                   <input
                     type="text"
+                    name="_id"
                     value={_id}
                     readOnly
                     className="w-full mt-1 p-2 bg-gray-100 border rounded text-gray-600 text-xs cursor-not-allowed"
@@ -165,6 +215,7 @@ const ProductsDetails = () => {
                   </label>
                   <input
                     type="text"
+                    name="name"
                     value={name}
                     readOnly
                     className="w-full mt-1 p-2 bg-gray-100 border rounded text-gray-800 font-medium text-sm cursor-not-allowed"
@@ -180,6 +231,7 @@ const ProductsDetails = () => {
                   </label>
                   <input
                     type="text"
+                    name="price"
                     value={isPet ? "Free" : `$${price}`}
                     readOnly
                     className="w-full mt-1 p-2 bg-gray-100 border rounded text-blue-600 font-bold cursor-not-allowed"
@@ -191,6 +243,7 @@ const ProductsDetails = () => {
                   </label>
                   <input
                     type="number"
+                    name="quantity"
                     value={isPet ? "1" : "1"}
                     readOnly
                     className="w-full mt-1 p-2 bg-gray-100 border rounded text-gray-600 cursor-not-allowed"
@@ -205,6 +258,7 @@ const ProductsDetails = () => {
                 </label>
                 <input
                   type="text"
+                  name="address"
                   placeholder="Enter address"
                   className="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
@@ -218,6 +272,7 @@ const ProductsDetails = () => {
                   </label>
                   <input
                     type="tel"
+                    name="phone"
                     placeholder="+880..."
                     className="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
@@ -228,6 +283,7 @@ const ProductsDetails = () => {
                   </label>
                   <input
                     type="date"
+                    name="pickupDate"
                     className="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
                 </div>
@@ -240,6 +296,7 @@ const ProductsDetails = () => {
                 </label>
                 <textarea
                   rows="2"
+                  name="notes"
                   placeholder="Any special requests?"
                   className="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
@@ -248,14 +305,13 @@ const ProductsDetails = () => {
               {/* Buttons */}
               <div className="pt-4 flex gap-3">
                 <button
-                  type="button"
-                  onClick={() => setIsModalOpen(false)}
+                  type="submit"
                   className="flex-1 bg-gray-100 text-gray-700 font-bold py-3 rounded-lg hover:bg-gray-200 transition"
                 >
                   Cancel
                 </button>
                 <button
-                  type="button"
+                  type="submit"
                   className="flex-1 bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition shadow-lg"
                 >
                   Confirm {isPet ? "Adoption" : "Order"}
