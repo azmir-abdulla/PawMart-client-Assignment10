@@ -43,27 +43,28 @@ const ProductsDetails = () => {
         price: e.target.price.value,
         username: user.displayName,
         email: user?.email || "",
+        quantity: isPet ? 1 : 1,
         phone : e.target.phone.value,
         address : e.target.address.value,
         pickupDate :  e.target.pickupDate.value,
         notes : e.target.notes.value,
       };
 
-    fetch("http://localhost:3000/orders", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log("Success:", data);
-            toast.success("Order placed successfully!");
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
+    fetch("https://pawmart-server-mauve.vercel.app/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Success:", data);
+        toast.success("Order placed successfully!");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
 
 
 

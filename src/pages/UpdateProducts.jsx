@@ -23,13 +23,16 @@ const UpdateProducts = () => {
           image: e.target.image.value,
         
         };
-        fetch(`http://localhost:3000/recentlist/${item._id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        })
+        fetch(
+          `https://pawmart-server-mauve.vercel.app/recentlist/${item._id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log("Success:", data);

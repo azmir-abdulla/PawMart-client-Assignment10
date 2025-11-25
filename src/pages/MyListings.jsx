@@ -5,6 +5,7 @@ import { AuthContext } from "../providers/AuthProvider";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
+import Loader from "../components/Loader";
 
 const MyListings = () => {
   const { user } = useContext(AuthContext);
@@ -14,7 +15,9 @@ const MyListings = () => {
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:3000/mylistings?email=${user.email}`)
+    fetch(
+      `https://pawmart-server-mauve.vercel.app/mylistings?email=${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setMyListings(data.data || []);
@@ -41,26 +44,24 @@ Swal.fire({
 }).then((result) => {
   if (result.isConfirmed) {
 
-     fetch(`http://localhost:3000/recentlist/${id}`, {
-             method: "DELETE",
-             headers: {
-               "Content-Type": "application/json",
-             },
- 
-           })
-             .then((res) => res.json())
-             .then((data) => {
-               console.log("Success:", data);
-                Swal.fire({
-                  title: "Deleted!",
-                  text: "Your file has been deleted.",
-                  icon: "success",
-                });
-              
-             })
-             .catch((error) => {
-               console.error("Error:", error);
-             });
+     fetch(`https://pawmart-server-mauve.vercel.app/recentlist/${id}`, {
+       method: "DELETE",
+       headers: {
+         "Content-Type": "application/json",
+       },
+     })
+       .then((res) => res.json())
+       .then((data) => {
+         console.log("Success:", data);
+         Swal.fire({
+           title: "Deleted!",
+           text: "Your file has been deleted.",
+           icon: "success",
+         });
+       })
+       .catch((error) => {
+         console.error("Error:", error);
+       });
 
    
   }
@@ -79,7 +80,7 @@ Swal.fire({
         </h1>
 
         {loading ? (
-          <p className="text-center text-gray-600">Loading your listings...</p>
+          <Loader></Loader>
         ) : myListings.length === 0 ? (
           <p className="text-center text-gray-600">
             You have not added any listings yet.

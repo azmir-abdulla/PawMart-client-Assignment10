@@ -8,9 +8,8 @@ import { AiFillInstagram } from "react-icons/ai";
 const Footer = () => {
   return (
     <footer className="bg-[#F5F3EE] pt-16 pb-10 text-[#183D3D]">
-      {/* Main Footer Content */}
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
-        {/* Logo + Description */}
+        {/* Logo + Description */}{" "}
         <div>
           <div className="flex items-center gap-3 mb-4">
             <img src={Logo} alt="PawMart" className="w-20" />
@@ -21,7 +20,6 @@ const Footer = () => {
             care products. A safe and friendly community for all pet lovers.
           </p>
 
-          {/* Hotline */}
           <div className="mt-6 flex gap-4 items-center">
             <p className="flex items-center gap-3 text-lg font-semibold text-[#DD3B44]">
               <span className="text-2xl">
@@ -35,7 +33,6 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Social Icons */}
           <div className="flex gap-4 mt-6 text-xl text-gray-700">
             <a href="#" className="hover:text-[#DD3B44] transition">
               <FaFacebook />
@@ -51,8 +48,7 @@ const Footer = () => {
             </a>
           </div>
         </div>
-
-        {/* Policies */}
+        {/* Policies */}{" "}
         <div>
           <h3 className="text-xl font-semibold mb-4">Our Policies</h3>
           <ul className="space-y-3 text-gray-600">
@@ -83,8 +79,6 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-
-        {/* Services */}
         <div>
           <h3 className="text-xl font-semibold mb-4">Our Services</h3>
           <ul className="space-y-3 text-gray-600">
@@ -115,17 +109,51 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-
-        {/* Instagram Grid */}
         <div>
           <h3 className="text-xl font-semibold mb-4">Instagram</h3>
           <div className="grid grid-cols-3 gap-3">
-            <div className="w-full h-20 bg-gray-300 rounded-lg"></div>
-            <div className="w-full h-20 bg-gray-300 rounded-lg"></div>
-            <div className="w-full h-20 bg-gray-300 rounded-lg"></div>
-            <div className="w-full h-20 bg-gray-300 rounded-lg"></div>
-            <div className="w-full h-20 bg-gray-300 rounded-lg"></div>
-            <div className="w-full h-20 bg-gray-300 rounded-lg"></div>
+            <div className="w-full h-20 bg-gray-300 rounded-lg">
+              <img
+                className="w-full h-full object-cover rounded-lg"
+                src="https://i.ibb.co/C3cNxsZF/Persian-Cat-White.jpg"
+                alt=""
+              />
+            </div>
+            <div className="w-full h-20 bg-gray-300 rounded-lg">
+              <img
+                className="w-full h-full object-cover rounded-lg"
+                src="https://i.ibb.co/d44k6nTP/Cute-Parrot-Green.jpg"
+                alt=""
+              />
+            </div>
+            <div className="w-full h-20 bg-gray-300 rounded-lg">
+              <img
+                className="w-full h-full object-cover rounded-lg"
+                src="https://i.ibb.co/bRJnX9Nb/British-Shorthair-Kitten.jpg"
+                alt=""
+              />
+            </div>
+            <div className="w-full h-20 bg-gray-300 rounded-lg">
+              <img
+                className="w-full h-full object-cover rounded-lg"
+                src="https://i.ibb.co/PvWZ3c06/Rabbit-Brown.jpg"
+                alt=""
+              />
+            </div>
+            <div className="w-full h-20 bg-gray-300 rounded-lg">
+              <img
+                className="w-full h-full object-cover rounded-lg"
+                src="https://i.ibb.co/gMTyS4d0/Premium-Cat-Food-2kg.jpg"
+                alt=""
+              />
+            </div>
+            <div className="w-full h-20 bg-gray-300 rounded-lg">
+              <img
+                className="w-full h-full object-cover rounded-lg"
+                src="https://i.ibb.co/27vswjDK/Adult-Dog-Food-3kg.jpg"
+                alt=""
+              />
+            </div>
           </div>
         </div>
       </div>

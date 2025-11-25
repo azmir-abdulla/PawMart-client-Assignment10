@@ -20,7 +20,7 @@ const AddListing = () => {
       date: e.target.date.value,
       email: user?.email || "",
     };
-    fetch("http://localhost:3000/recentlist", {
+    fetch("https://pawmart-server-mauve.vercel.app/recentlist", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

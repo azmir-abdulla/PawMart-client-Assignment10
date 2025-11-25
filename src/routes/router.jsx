@@ -4,7 +4,7 @@ import HomeLayout from '../Layouts/HomeLayout';
 import Home from '../pages/Home';
 import PetAndSupplies from '../pages/PetAndSupplies';
 import MyListings from '../pages/MyListings';
-import AllOrder from '../pages/AllOrder';
+
 import AddListing from '../pages/AddListing';
 import AuthLayout from "../Layouts/AuthLayout";
 import Login from '../pages/Login';
@@ -14,6 +14,7 @@ import PrivateRoute from '../providers/PrivateRoute';
 import ProductsDetails from '../pages/ProductsDetails';
 import UpdateProducts from '../pages/UpdateProducts';
 import MyOders from '../pages/MyOders';
+import Error from '../pages/Error';
 
 const router = createBrowserRouter([
   {
@@ -91,7 +92,10 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
 
-  },
+  },{
+    path: "*",
+    element: <Error></Error>
+  }
 ]);
         
 export default router;
