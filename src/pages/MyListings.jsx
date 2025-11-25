@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { AuthContext } from "../providers/AuthProvider";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import { Link } from "react-router";
 
 const MyListings = () => {
   const { user } = useContext(AuthContext);
@@ -89,9 +90,12 @@ const MyListings = () => {
                     <td className="px-6 py-4 text-gray-600">{item.location}</td>
                     <td className="px-6 py-4 text-gray-600">{item.email}</td>
                     <td className="px-6 py-4 flex gap-2">
-                      <button className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-3 rounded-lg flex justify-center items-center gap-1 transition">
+                      <Link
+                        to={`/update/${item._id}`}
+                        className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-3 rounded-lg flex justify-center items-center gap-1 transition"
+                      >
                         <FaEdit /> Update
-                      </button>
+                      </Link>
                       <button className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-3 rounded-lg flex justify-center items-center gap-1 transition">
                         <FaTrash /> Delete
                       </button>

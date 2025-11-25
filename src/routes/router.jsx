@@ -12,6 +12,7 @@ import Register from '../pages/Register';
 import UserProfile from "../pages/UserProfile";
 import PrivateRoute from '../providers/PrivateRoute';
 import ProductsDetails from '../pages/ProductsDetails';
+import UpdateProducts from '../pages/UpdateProducts';
 
 const router = createBrowserRouter([
   {
@@ -70,8 +71,18 @@ const router = createBrowserRouter([
         <ProductsDetails></ProductsDetails>
       </PrivateRoute>
     ),
-    loader: ({params}) => fetch(`http://localhost:3000/recentlist/${params.id}`),
-
+    loader: ({ params }) =>
+      fetch(`http://localhost:3000/recentlist/${params.id}`),
+  },
+  {
+    path: "/update/:id",
+    element: (
+      <PrivateRoute>
+        <UpdateProducts></UpdateProducts>
+      </PrivateRoute>
+    ),
+    loader: ({ params }) =>
+      fetch(`http://localhost:3000/recentlist/${params.id}`),
   },
 ]);
         
