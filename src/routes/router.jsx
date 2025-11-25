@@ -64,12 +64,14 @@ const router = createBrowserRouter([
     element: <AllOrder></AllOrder>,
   },
   {
-    path: "/product-details/:_id",
+    path: "/product-details/:id",
     element: (
       <PrivateRoute>
         <ProductsDetails></ProductsDetails>
       </PrivateRoute>
-    )
+    ),
+    loader: ({params}) => fetch(`http://localhost:3000/recentlist/${params.id}`),
+
   },
 ]);
         

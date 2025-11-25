@@ -4,24 +4,37 @@ import Footer from "../components/Footer";
 import { AuthContext } from "../providers/AuthProvider";
 
 const AddListing = () => {
-   const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
-   const handleSubmit = (e) => {
-     e.preventDefault();
-     // Handle form submission logic here
-     const formData = {
-         name: e.target.name.value,
-         category: e.target.category.value,
-         price: e.target.price.value,
-         location: e.target.location.value,
-         description: e.target.description.value,
-         image: e.target.image.value,
-         date: e.target.date.value,
-         email: user?.email || "",
+  const handleSubmit = (e) => {
+    e.preventDefault();
+   
+    const formData = {
+      name: e.target.name.value,
+      category: e.target.category.value,
+      price: e.target.price.value,
+      location: e.target.location.value,
+      description: e.target.description.value,
+      image: e.target.image.value,
+      date: e.target.date.value,
+      email: user?.email || "",
+    };
+    fetch("http://localhost:3000/recentlist", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
 
-     };
-       console.log("Form Data Submitted: ", formData);
-   }
+  };
 
   return (
     <>
@@ -32,7 +45,10 @@ const AddListing = () => {
       <main className="max-w-3xl mx-auto p-6">
         <h2 className="text-2xl font-semibold mb-4">Add New Listing</h2>
 
-        <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-lg shadow">
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-4 bg-white p-6 rounded-lg shadow"
+        >
           {/* Product / Pet Name */}
           <div>
             <label className="block font-medium">Product / Pet Name</label>
@@ -114,7 +130,7 @@ const AddListing = () => {
             <label className="block font-medium">Email</label>
             <input
               type="email"
-               name="email"
+              name="email"
               className="w-full border p-2 rounded bg-gray-100"
               value={user?.email || ""}
               readOnly

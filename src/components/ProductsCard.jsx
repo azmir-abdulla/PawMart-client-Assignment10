@@ -1,5 +1,6 @@
 import React from "react";
 import { FaMapMarkerAlt, FaTag, FaPaw } from "react-icons/fa";
+import { Link } from "react-router";
 
 const ProductsCard = ({petsandsupplie}) => {
   return (
@@ -46,12 +47,13 @@ const ProductsCard = ({petsandsupplie}) => {
           </div>
 
           {/* See Details Button */}
-          <button
-            onClick={() => handleViewDetails(petsandsupplie._id)}
-            className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition duration-200"
+
+          <Link
+            to={`/product-details/${petsandsupplie._id}`}
+            className=" btn w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition duration-200"
           >
             See Details
-          </button>
+          </Link>
         </div>
       </div>
     </div>

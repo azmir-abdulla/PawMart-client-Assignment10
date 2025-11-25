@@ -42,3 +42,23 @@
 22. Pet Grooming Brush
 23. Anti-Itch Spray
 24. Pet Nail Clipper
+
+
+
+
+name
+"Golden Retriever Puppy"
+category
+"Pets"
+price
+0
+location
+"Dhaka"
+description
+"Friendly 3-month-old Golden Retriever puppy."
+image
+"https://i.ibb.co/yBhVFzHj/d-Golden-Retriever-Puppy.jpg"
+date
+"2025-01-11"
+email
+"user1@example.com"
