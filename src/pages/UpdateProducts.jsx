@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useLoaderData} from "react-router";
+import { toast, ToastContainer } from "react-toastify";
 
 const UpdateProducts = () => {
   const data = useLoaderData(); // pre-loaded product data
@@ -9,8 +10,41 @@ const UpdateProducts = () => {
     console.log(item);
 
 
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const formData = {
+          name: e.target.name.value,
+          category: e.target.category.value,
+          price: e.target.price.value,
+          location: e.target.location.value,
+          description: e.target.description.value,
+          image: e.target.image.value,
+        
+        };
+        fetch(`http://localhost:3000/recentlist/${item._id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("Success:", data);
+            toast.success("Product updated successfully!");
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+
+      };
+
+
   return (
     <>
+    <ToastContainer></ToastContainer>
       <header>
         <Navbar />
       </header>
@@ -21,7 +55,7 @@ const UpdateProducts = () => {
         </h1>
 
         <form
-          
+          onSubmit={handleSubmit}
           className="bg-white p-6 rounded-xl shadow-lg space-y-4"
         >
           {/* Name */}
@@ -46,7 +80,7 @@ const UpdateProducts = () => {
             <input
               type="text"
               name="category"
-                defaultValue={item.category}
+              defaultValue={item.category}
               className="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
@@ -60,7 +94,7 @@ const UpdateProducts = () => {
             <input
               type="number"
               name="price"
-                defaultValue={item.price}
+              defaultValue={item.price}
               className="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               min="0"
             />
@@ -74,7 +108,7 @@ const UpdateProducts = () => {
             <input
               type="text"
               name="location"
-                defaultValue={item.location}
+              defaultValue={item.location}
               className="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { AuthContext } from "../providers/AuthProvider";
+import { toast, ToastContainer } from "react-toastify";
 
 const AddListing = () => {
   const { user } = useContext(AuthContext);
@@ -29,6 +30,7 @@ const AddListing = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log("Success:", data);
+        toast.success("Listing added successfully!");
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -38,6 +40,7 @@ const AddListing = () => {
 
   return (
     <>
+    <ToastContainer></ToastContainer>
       <header>
         <Navbar />
       </header>

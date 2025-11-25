@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import { AuthContext } from "../providers/AuthProvider";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router";
+import Swal from "sweetalert2";
 
 const MyListings = () => {
   const { user } = useContext(AuthContext);
@@ -25,6 +26,47 @@ const MyListings = () => {
       });
   }, [user?.email]);
 
+
+
+  const handleDelete = (id) => {
+
+Swal.fire({
+  title: "Are you sure?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, delete it!",
+}).then((result) => {
+  if (result.isConfirmed) {
+
+     fetch(`http://localhost:3000/recentlist/${id}`, {
+             method: "DELETE",
+             headers: {
+               "Content-Type": "application/json",
+             },
+ 
+           })
+             .then((res) => res.json())
+             .then((data) => {
+               console.log("Success:", data);
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success",
+                });
+              
+             })
+             .catch((error) => {
+               console.error("Error:", error);
+             });
+
+   
+  }
+});
+
+  };
   return (
     <>
       <header>
@@ -96,7 +138,10 @@ const MyListings = () => {
                       >
                         <FaEdit /> Update
                       </Link>
-                      <button className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-3 rounded-lg flex justify-center items-center gap-1 transition">
+                      <button
+                        onClick={() => handleDelete(item._id)}
+                        className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-3 rounded-lg flex justify-center items-center gap-1 transition"
+                      >
                         <FaTrash /> Delete
                       </button>
                     </td>
