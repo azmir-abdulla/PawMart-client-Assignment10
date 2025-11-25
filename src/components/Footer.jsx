@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <footer className="bg-[#F5F3EE] pt-16 pb-10 text-[#183D3D]">
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
-        {/* Logo + Description */}{" "}
+    
         <div>
           <div className="flex items-center gap-3 mb-4">
             <img src={Logo} alt="PawMart" className="w-20" />
@@ -48,7 +48,7 @@ const Footer = () => {
             </a>
           </div>
         </div>
-        {/* Policies */}{" "}
+    
         <div>
           <h3 className="text-xl font-semibold mb-4">Our Policies</h3>
           <ul className="space-y-3 text-gray-600">
@@ -158,7 +158,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom Bar */}
+  
       <div className="border-t border-gray-300 mt-12 pt-4 text-center text-gray-600 text-sm">
         © {new Date().getFullYear()} PawMart. All Rights Reserved.
       </div>

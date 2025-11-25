@@ -30,7 +30,7 @@ const Navbar = () => {
       <ToastContainer />
 
       <nav className="navbar bg-base-100 shadow-md sticky top-0 z-50 px-4 md:px-10">
-        {/* LEFT: Logo */}
+      
         <div className="navbar-start">
           <NavLink to="/" className="flex items-center gap-2 cursor-pointer">
             <img src={Logo} alt="Logo" className="w-16" />
@@ -40,7 +40,7 @@ const Navbar = () => {
           </NavLink>
         </div>
 
-        {/* MIDDLE MENU */}
+      
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-gray-600 font-medium">
             <li>
@@ -69,7 +69,6 @@ const Navbar = () => {
               </NavLink>
             </li>
 
-            {/* SHOW ONLY AFTER LOGIN */}
             {user && (
               <>
                 <li>
@@ -115,14 +114,11 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* RIGHT SIDE */}
         <div className="navbar-end flex items-center gap-4">
-          {/* Theme Toggle */}
           <button onClick={toggleTheme} className="text-xl">
             {theme === "light" ? <FaMoon /> : <FaSun />}
           </button>
 
-          {/* IF LOGGED IN ⇒ SHOW AVATAR + LOGOUT */}
           {user ? (
             <>
               <div className="relative group">

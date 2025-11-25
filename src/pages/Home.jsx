@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import CategorySection from "../components/CategorySection";
-import RecentListingsSection from "../components/RecentListingsSection";
+// import RecentListingsSection from "../components/RecentListingsSection";
 import WhyAdoptSection from "../components/WhyAdoptSection";
 import PetHeroesSection from "../components/PetHeroesSection";
 import { useLoaderData } from "react-router";
@@ -28,7 +28,6 @@ const Home = () => {
 
       <CategorySection />
 
-      {/* Recent Products */}
       <h1 className="text-center font-bold text-2xl mb-10 mt-10">
         Explore Our Pets And Supplies
       </h1>

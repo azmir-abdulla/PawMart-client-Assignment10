@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { AuthContext } from "../providers/AuthProvider";
 import { toast, ToastContainer } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const AddListing = () => {
   const { user } = useContext(AuthContext);
@@ -29,7 +30,7 @@ const AddListing = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("Success:", data);
+        // console.log("Success:", data);
         toast.success("Listing added successfully!");
       })
       .catch((error) => {
@@ -40,7 +41,10 @@ const AddListing = () => {
 
   return (
     <>
-    <ToastContainer></ToastContainer>
+      <Helmet>
+        <title>Add Listing</title>
+      </Helmet>
+      <ToastContainer></ToastContainer>
       <header>
         <Navbar />
       </header>
@@ -52,7 +56,6 @@ const AddListing = () => {
           onSubmit={handleSubmit}
           className="space-y-4 bg-white p-6 rounded-lg shadow"
         >
-          {/* Product / Pet Name */}
           <div>
             <label className="block font-medium">Product / Pet Name</label>
             <input
@@ -63,7 +66,6 @@ const AddListing = () => {
             />
           </div>
 
-          {/* Category */}
           <div>
             <label className="block font-medium">Category</label>
             <select name="category" className="w-full border p-2 rounded">
@@ -74,7 +76,6 @@ const AddListing = () => {
             </select>
           </div>
 
-          {/* Price */}
           <div>
             <label className="block font-medium">Price</label>
             <input
@@ -85,7 +86,6 @@ const AddListing = () => {
             />
           </div>
 
-          {/* Location */}
           <div>
             <label className="block font-medium">Location</label>
             <input
@@ -96,7 +96,6 @@ const AddListing = () => {
             />
           </div>
 
-          {/* Description */}
           <div>
             <label className="block font-medium">Description</label>
             <textarea
@@ -107,7 +106,6 @@ const AddListing = () => {
             ></textarea>
           </div>
 
-          {/* Image URL */}
           <div>
             <label className="block font-medium">Image URL</label>
             <input
@@ -118,7 +116,6 @@ const AddListing = () => {
             />
           </div>
 
-          {/* Date */}
           <div>
             <label className="block font-medium">Pick Up Date</label>
             <input
@@ -128,7 +125,6 @@ const AddListing = () => {
             />
           </div>
 
-          {/* Email (readonly) */}
           <div>
             <label className="block font-medium">Email</label>
             <input
@@ -140,7 +136,6 @@ const AddListing = () => {
             />
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-blue-600 text-white p-2 rounded"

@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { AuthContext } from "../providers/AuthProvider";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const ProductsDetails = () => {
   const { user } = useContext(AuthContext);
@@ -59,7 +60,7 @@ const ProductsDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("Success:", data);
+        // console.log("Success:", data);
         toast.success("Order placed successfully!");
       })
       .catch((error) => {
@@ -82,15 +83,18 @@ const ProductsDetails = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Product Details</title>
+      </Helmet>
+
       <header>
         <Navbar />
       </header>
 
       <main className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-        {/* Product Details Card */}
+    
         <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            {/* Left: Image */}
             <div className="relative h-96 lg:h-full">
               <img
                 src={image}
@@ -102,7 +106,6 @@ const ProductsDetails = () => {
               </div>
             </div>
 
-            {/* Right: Details */}
             <div className="p-8 lg:p-12 flex flex-col justify-center">
               <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">
                 {name}
@@ -117,7 +120,6 @@ const ProductsDetails = () => {
                 {isPet || price === 0 ? "Free / Adoption" : `$${price}`}
               </div>
 
-              {/* Owner Info */}
               <div className="flex items-center p-4 bg-gray-50 rounded-lg mb-6 border border-gray-100">
                 <FaUserCircle className="text-4xl text-gray-400 mr-4" />
                 <div>
@@ -128,7 +130,6 @@ const ProductsDetails = () => {
                 </div>
               </div>
 
-              {/* Description */}
               <div className="mb-8">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Description
@@ -136,7 +137,6 @@ const ProductsDetails = () => {
                 <p className="text-gray-600 leading-relaxed">{description}</p>
               </div>
 
-              {/* Action Button */}
               <button
                 onClick={() => setIsModalOpen(true)}
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-lg transition duration-300 transform hover:-translate-y-1 shadow-lg flex justify-center items-center gap-2"
@@ -149,11 +149,9 @@ const ProductsDetails = () => {
         </div>
       </main>
 
-      {/* ----------------- ORDER MODAL ----------------- */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-md">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto animate-fadeIn">
-            {/* Modal Header */}
             <div className="flex justify-between items-center p-6 border-b border-gray-100 sticky top-0 bg-white z-10">
               <h2 className="text-xl font-bold text-gray-800">
                 {isPet ? "Adoption Form" : "Order Form"}
@@ -166,9 +164,7 @@ const ProductsDetails = () => {
               </button>
             </div>
 
-            {/* Modal Form */}
             <form onSubmit={handleOrderSubmit} className="p-6 space-y-4">
-              {/* Buyer Info */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-gray-500 uppercase">
@@ -196,7 +192,6 @@ const ProductsDetails = () => {
                 </div>
               </div>
 
-              {/* Product Info */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-gray-500 uppercase">
@@ -224,7 +219,6 @@ const ProductsDetails = () => {
                 </div>
               </div>
 
-              {/* Price & Quantity */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-gray-500 uppercase">
@@ -252,7 +246,6 @@ const ProductsDetails = () => {
                 </div>
               </div>
 
-              {/* Address */}
               <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Address
@@ -265,7 +258,6 @@ const ProductsDetails = () => {
                 />
               </div>
 
-              {/* Date & Phone */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700">
@@ -290,7 +282,6 @@ const ProductsDetails = () => {
                 </div>
               </div>
 
-              {/* Additional Notes */}
               <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Additional Notes (Optional)
@@ -303,7 +294,6 @@ const ProductsDetails = () => {
                 />
               </div>
 
-              {/* Buttons */}
               <div className="pt-4 flex gap-3">
                 <button
                   type="submit"

@@ -24,7 +24,8 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:3000/recent-items"),
+        loader: () =>
+          fetch("https://pawmart-server-mauve.vercel.app/recent-items"),
       },
     ],
   },
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
   {
     path: "/pet-and-supplies",
     element: <PetAndSupplies></PetAndSupplies>,
-    loader: () => fetch("http://localhost:3000/recentlist"),
+    loader: () => fetch("https://pawmart-server-mauve.vercel.app/recentlist"),
   },
   {
     path: "/add-listing",
@@ -63,7 +64,7 @@ const router = createBrowserRouter([
     path: "/my-listings",
     element: <MyListings></MyListings>,
   },
- 
+
   {
     path: "/product-details/:id",
     element: (
@@ -72,7 +73,7 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     loader: ({ params }) =>
-      fetch(`http://localhost:3000/recentlist/${params.id}`),
+      fetch(`https://pawmart-server-mauve.vercel.app/recentlist/${params.id}`),
   },
   {
     path: "/update/:id",
@@ -82,20 +83,20 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     loader: ({ params }) =>
-      fetch(`http://localhost:3000/recentlist/${params.id}`),
+      fetch(`https://pawmart-server-mauve.vercel.app/recentlist/${params.id}`),
   },
   {
     path: "/my-orders",
     element: (
       <PrivateRoute>
-       <MyOders></MyOders>
+        <MyOders></MyOders>
       </PrivateRoute>
     ),
-
-  },{
+  },
+  {
     path: "*",
-    element: <Error></Error>
-  }
+    element: <Error></Error>,
+  },
 ]);
         
 export default router;

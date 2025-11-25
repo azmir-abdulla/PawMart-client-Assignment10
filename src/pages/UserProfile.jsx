@@ -14,7 +14,6 @@ const UserProfile = () => {
     try {
       await updateUser({ displayName: name, photoURL: photoURL });
 
-      // 👇 Immediately update local state so no reload is needed
       setUser({
         ...user,
         displayName: name,
@@ -39,7 +38,6 @@ const UserProfile = () => {
       <h2 className="text-2xl font-bold mb-6 text-center">User Profile</h2>
 
       <div className="flex flex-col md:flex-row items-center gap-6">
-        {/* Left: User Photo */}
         <div className="flex-shrink-0 text-center">
           <img
             src={photoURL || "https://via.placeholder.com/150"}
@@ -48,7 +46,6 @@ const UserProfile = () => {
           />
         </div>
 
-        {/* Right: Editable Info */}
         <form onSubmit={handleUpdate} className="flex-1 space-y-4">
           <div>
             <label className="block text-gray-700 font-medium mb-1">

@@ -6,7 +6,6 @@ const ProductsCard = ({petsandsupplie}) => {
   return (
     <div>
       <div className="bg-white rounded-lg shadow-xl overflow-hidden transform hover:scale-[1.02] transition duration-300">
-        {/* Card Image */}
         <div className="h-48 overflow-hidden">
           <img
             src={petsandsupplie.image}
@@ -16,7 +15,6 @@ const ProductsCard = ({petsandsupplie}) => {
         </div>
 
         <div className="p-5">
-          {/* Name and Category */}
           <div className="flex justify-between items-start mb-3">
             <h3 className="text-2xl font-semibold text-gray-800">
               {petsandsupplie.name}
@@ -26,7 +24,6 @@ const ProductsCard = ({petsandsupplie}) => {
             </span>
           </div>
 
-          {/* Price and Location */}
           <div className="space-y-2 mb-4">
             <p className="flex items-center text-lg font-bold">
               <FaTag className="text-green-500 mr-2" />
@@ -46,7 +43,6 @@ const ProductsCard = ({petsandsupplie}) => {
             </p>
           </div>
 
-          {/* See Details Button */}
 
           <Link
             to={`/product-details/${petsandsupplie._id}`}

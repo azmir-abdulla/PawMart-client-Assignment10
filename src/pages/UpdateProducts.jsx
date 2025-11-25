@@ -3,11 +3,12 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useLoaderData} from "react-router";
 import { toast, ToastContainer } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const UpdateProducts = () => {
   const data = useLoaderData(); // pre-loaded product data
     const item = data.result;
-    console.log(item);
+    // console.log(item);
 
 
 
@@ -35,7 +36,7 @@ const UpdateProducts = () => {
         )
           .then((res) => res.json())
           .then((data) => {
-            console.log("Success:", data);
+            // console.log("Success:", data);
             toast.success("Product updated successfully!");
           })
           .catch((error) => {
@@ -47,7 +48,10 @@ const UpdateProducts = () => {
 
   return (
     <>
-    <ToastContainer></ToastContainer>
+      <Helmet>
+        <title>Update Product</title>
+      </Helmet>
+      <ToastContainer></ToastContainer>
       <header>
         <Navbar />
       </header>
@@ -61,7 +65,6 @@ const UpdateProducts = () => {
           onSubmit={handleSubmit}
           className="bg-white p-6 rounded-xl shadow-lg space-y-4"
         >
-          {/* Name */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Name
@@ -75,7 +78,6 @@ const UpdateProducts = () => {
             />
           </div>
 
-          {/* Category */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Category
@@ -89,7 +91,6 @@ const UpdateProducts = () => {
             />
           </div>
 
-          {/* Price */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Price
@@ -103,7 +104,6 @@ const UpdateProducts = () => {
             />
           </div>
 
-          {/* Location */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Location
@@ -117,7 +117,6 @@ const UpdateProducts = () => {
             />
           </div>
 
-          {/* Description */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Description
@@ -131,7 +130,6 @@ const UpdateProducts = () => {
             ></textarea>
           </div>
 
-          {/* Image URL */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Image URL
@@ -144,7 +142,6 @@ const UpdateProducts = () => {
             />
           </div>
 
-          {/* Submit Button */}
           <div className="flex justify-end gap-3 mt-4">
             <button
               type="submit"

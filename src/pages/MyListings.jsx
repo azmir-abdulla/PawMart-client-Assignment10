@@ -6,6 +6,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 import Loader from "../components/Loader";
+import { Helmet } from "react-helmet";
 
 const MyListings = () => {
   const { user } = useContext(AuthContext);
@@ -52,7 +53,7 @@ Swal.fire({
      })
        .then((res) => res.json())
        .then((data) => {
-         console.log("Success:", data);
+        //  console.log("Success:", data);
          Swal.fire({
            title: "Deleted!",
            text: "Your file has been deleted.",
@@ -70,6 +71,9 @@ Swal.fire({
   };
   return (
     <>
+      <Helmet>
+        <title>My Listing</title>
+      </Helmet>
       <header>
         <Navbar />
       </header>

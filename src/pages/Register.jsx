@@ -57,12 +57,12 @@ const Register = () => {
             toast.success("Registration Successful");
           })
           .catch((error) => {
-            console.log("updateUser error:", error);
+            // console.log("updateUser error:", error);
             toast.error("Profile update failed");
           });
       })
       .catch((error) => {
-        console.log("createUser error:", error);
+        // console.log("createUser error:", error);
         toast.error(error.message || "Registration failed");
       });
   };

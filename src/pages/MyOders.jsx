@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import { AuthContext } from "../providers/AuthProvider";
 
 import Loader from "../components/Loader";
+import { Helmet } from "react-helmet";
 
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
@@ -30,6 +31,11 @@ const MyOrders = () => {
 
   return (
     <>
+
+
+      <Helmet>
+        <title>My Order</title>
+      </Helmet>
       <header>
         <Navbar />
       </header>
